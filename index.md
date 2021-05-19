@@ -4,21 +4,11 @@ layout: template
 filename: index
 --- 
 
-# patrickandfrantonarethebestninjas
+# Welome to My Personal Project Page  
 
-## Created by [Patrick Huston](http://www.patrickhuston.com/) and [Franton Lin](frantonlin.com)
+## Summary
 
-#### What is patrickandfrantonarethebestninjas?
-This project aims to demonstrate without a doubt why Patrick and Franton are the best ninjas. 
-
-#### How can I use patrickandfrantonarethebestninjas?
-Come to office hours and git tutorials. Baked goods and cash are also accepted.
-
-#### Dependencies
-patrickandfrantonarethebestninjas depends heavily on the perception of students. A lot of research has been done looking into ways of monitoring and directly modifying how students perceive ninjas, and we have implemented this technology to the fullest extent. 
-
-#### How to contribute?
-To contribute to patrickandfrantonarethebestninjas, write a heart-felt love note and submit a PR. 
+#### What is Watonomous?
 
 #### License
 
