@@ -13,6 +13,9 @@ The goal is given a cell phone on a floor, find the center of the phone in the i
 
 Here are some example images from the dataset:
 (insert images here)
+![Drag Racing](imgs/white_background.jpg)
+
+
 
 ### Design Options
 Given the nature of the images, one thing that stood out is that the phone is quite salient. It often is the darkest object in the image, and also often has the smallest area. This led to a few different possible design decisions:
