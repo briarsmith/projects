@@ -1,19 +1,11 @@
 ---
-title: pafatbn forever!
+title: Home
 layout: template
 filename: index
 --- 
 
 # Welome to My Personal Project Page  
 
-## Summary
+## Who Am I?
+Hi, I'm Briar, a passionate individual that believes his purpose in life is to learn as much as possible, about everything. My notable interests include robotics, natural sciences, and psychology. I believe that each of these 3 things are extremely powerful. Robotics for its social implications, the natural sciences for understanding the universe, and psychology for understanding other humans, as well as ourselves. These systems are all deeply connected to eachother, as is everything in some sort of fundamental way. I would also consider myself a writer and a philosopher, incredibly curious and open minded. I am an extrovert and love conversations with people. My friends note my ability to hold conversations, and to always have something interesting to talk about. Please take some time to check out some projects I have been a part of by visiting around my website.  
 
-#### What is Watonomous?
-
-#### License
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

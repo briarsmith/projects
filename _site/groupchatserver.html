@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Group Chat Server with Linux Epoll</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Hi</h1>
+      <h2 class="project-tagline"></h2>
+      
+        <a href= groupchatserver class="btn">Group Chat Server with Linux Epoll</a>
+      
+        <a href= index class="btn">Home</a>
+      
+        <a href= phonedetector class="btn">Phone Detector with OpenCV</a>
+      
+        <a href= watonomous class="btn">Autonomous Vehicle Student Design Team</a>
+      
+    </section>
+
+    <section class="main-content">
+      
+      <h1 id="detecting-a-cell-phone-with-opencv">Detecting a cell phone with OpenCV</h1>
+<p>View the code on GitHub <a href="https://github.com/briarsmith/group-chat-server">here</a></p>
+
+<h3 id="goal">Goal</h3>
+<p>To create a facebook-like group chat server that can support up to 1000 connnects. People can connect to a particular group to chat with eachother using the command <code>JOIN group name</code>. A group will be created if it doesn’t exist already. A broadcast will be sent to all of the existing people in the group when a user joins or leaves. The connection to the server will be closed if an invalid JOIN command is sent (improper formatting, etc).</p>
+
+<p>Here’s an example of some invalid join commands. The first one uses <code>JoiN</code> rather than <code>JOIN</code>. The second one doesn’t use <code>JOIN</code> at all, but instead sends <code>Not a valid first message</code> to the server.<br /><br /></p>
+<div style="text-align:center;">
+<img src="imgs/group-chat-server/invalid-join-cmd.png" /><br />
+<span>Invalid Join Commands</span><br /><br />
+</div>
+<p>And here is an example of a person joining the <code>cooking</code> group with the name <code>tim</code>.</p>
+<div style="text-align:center;">
+<img src="imgs/group-chat-server/tim-joined.png" /><br />
+<span>Tim Joining the Cooking Group</span><br /><br />
+</div>
+<p>Extending this example, another separate connection is made to <code>cooking</code>, this persons name is <code>bob</code>.</p>
+<div style="text-align:center;">
+<img src="imgs/group-chat-server/bob-joined.png" /><br />
+<span>Bob Joining the Server</span><br /><br />
+</div>
+<p>And from Tim’s perspective of the group chat <code>cooking</code>, it says “Bob has joined”.</p>
+<div style="text-align:center;">
+<img src="imgs/group-chat-server/bob-joined2.png" /><br />
+<span>Tims Perspective of Bob Joining the Cooking Group</span><br /><br />
+</div>
+<p>Now when Tim or Bob speaks, they both will see the messages.</p>
+<div style="text-align:center;">
+<img src="imgs/group-chat-server/tim-says-hi-bob.png" /><br />
+<span>Tim Broadcasts Hi Bob to the Cooking Group</span><br /><br />
+</div>
+<p>Bob’s perspective of Tim saying “Hi Bob”</p>
+<div style="text-align:center;">
+<img src="imgs/group-chat-server/bob-sees-hi-bob.png" /><br />
+<span>Bobs Perspective of Tims Message</span><br /><br />
+</div>
+<p>To wrap this example up, Bob leaves the chat (in this case, the terminal was force closed).</p>
+<div style="text-align:center;">
+<img src="imgs/group-chat-server/bob-leaves-chat.png" /><br />
+<span>Tims Perspective of Bob Leaving the Server</span><br /><br />
+</div>
+<h3 id="design-options">Design Options</h3>
+<ol>
+  <li>Syncronous <code>read</code> and <code>write</code> functions are an option, however it was clear that they were not going to be able to handle a large amount of file descriptors because each FD needed to be polled individually for changes.</li>
+  <li>Using async IO would notify a handle of events of only FD’s that had an event fire on them. Specifically, the <code>epoll</code> function could be used for this, which interfaces directly with the Linux kernel. Using the <code>#include aio</code> library would allow the multiple async queuing of writes when necessary too, such as for the broadcasts.</li>
+  <li>To use a thread pool where each thread is responsible for an equally distributed range of file descriptors depending on the number of connections.</li>
+</ol>
+
+<h3 id="design-decision-results-summary">Design Decision, Results Summary</h3>
+<p>Although option 1 is easier to implement, it supports a small number of connections due to its non-async nature. Option 3 is more complicated to implement, as dealing with threads always is, and there’s the overhead of thread switching. Even with a thread pool, with a large number of connections it’s likely to still bottleneck using the sync function calls. Therefore the choice was fairly simple, to use epoll and async io, option 2, as it is a natural, seemingly efficient and relatively easy solution to implement (though more complicated than option 1).</p>
+
+<h3 id="common-problems-and-improvements">Common Problems and Improvements</h3>
+<p>Overall the system works as desired and supports a large number of connections. Other than the minor bug fixes and code clarity/restructuring, it would be helpful to find a non standard library that would simplify a lot of the socket programming. This was done with standard libraries mostly for the learning experience, but I would be curious to know how it compares to 3rd party library implementations for speed and efficiency.</p>
+
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/phuston/patrickandfrantonarethebestninjas">pafatbs</a> is maintained by <a href="https://github.com/phuston">phuston</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
